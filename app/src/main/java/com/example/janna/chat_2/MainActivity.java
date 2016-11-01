@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
     @OnClick(R.id.send)
     public void sendMessage(View view){
         sendChatMessage(true);
+
     }
 
 
