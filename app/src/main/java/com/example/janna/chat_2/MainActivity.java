@@ -1,7 +1,7 @@
 package com.example.janna.chat_2;
 
 
-        import android.app.Activity;
+import android.app.Activity;
         import android.database.DataSetObserver;
         import android.os.Bundle;
         import android.view.KeyEvent;
@@ -20,23 +20,18 @@ package com.example.janna.chat_2;
 
 public class MainActivity extends Activity {
     private static final String TAG = "ChatActivity";
-
     private ChatArrayAdapter chatArrayAdapter;
-
     @BindView(R.id.msgview) ListView mListView;
     @BindView(R.id.msg) EditText mChatText;
     @BindView(R.id.send) ImageButton mButtonSend;
     private boolean side;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         chatArrayAdapter = new ChatArrayAdapter(getApplicationContext(), R.layout.right);
         mListView.setAdapter(chatArrayAdapter);
-
         mChatText.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
@@ -49,13 +44,10 @@ public class MainActivity extends Activity {
         mListView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
         mListView.setAdapter(chatArrayAdapter);
     }
-
     @OnClick(R.id.send)
     public void sendMessage(View view){
         sendChatMessage(true);
     }
-
-
     private boolean sendChatMessage(Boolean esMio) {
         String mText = mChatText.getText().toString();
         if(!mText.trim().matches("")){
@@ -68,7 +60,6 @@ public class MainActivity extends Activity {
         }else{
             Toast.makeText(this,"Please enter something on the chat box", Toast.LENGTH_SHORT).show();
         }
-
         //side=!side;
         mChatText.setText("");
         return true;
